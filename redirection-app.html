@@ -1,0 +1,36 @@
+<!-- Página HTML para manejar la redirección -->
+<!-- Guarda esto como index.html en tu servidor web -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function handleRedirect() {
+        // URL de tu app
+        var appUrl = "gallitos://"; // Tu esquema personalizado
+
+        // URL de tu app en Play Store
+        var playStoreUrl =
+          "https://play.google.com/store/apps/details?id=com.tuempresa.tuapp";
+
+        // Intenta abrir la app
+        window.location.href = appUrl;
+
+        // Si después de un breve delay no se abrió la app, redirige a Play Store
+        setTimeout(function () {
+          window.location.href = playStoreUrl;
+        }, 500);
+      }
+    </script>
+  </head>
+  <body onload="handleRedirect()">
+    <h1>Redirigiendo...</h1>
+    <p>
+      Si no eres redirigido automáticamente,
+      <a
+        href="https://play.google.com/store/apps/details?id=com.tuempresa.tuapp"
+      >
+        haz clic aquí para ir a Play Store
+      </a>
+    </p>
+  </body>
+</html>
