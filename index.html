@@ -3,34 +3,45 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirigiendo a Gallitos</title>
     <script>
-      function handleRedirect() {
+      function openApp() {
         // URL de tu app
         var appUrl = "gallitos://"; // Tu esquema personalizado
+
+        // Obtener la página de los parámetros de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = urlParams.get("page") || "start";
 
         // URL de tu app en Play Store
         var playStoreUrl =
           "https://play.google.com/store/apps/details?id=com.tuempresa.tuapp";
 
         // Intenta abrir la app
-        window.location.href = appUrl;
+        window.location.href = `${appUrl}${page}`;
 
+        console.log(window.location.href);
+        console.log(`${appUrl}${page}`);
         // Si después de un breve delay no se abrió la app, redirige a Play Store
         setTimeout(function () {
           window.location.href = playStoreUrl;
-        }, 500);
+        }, 20000);
       }
     </script>
   </head>
-  <body onload="handleRedirect()">
-    <h1>Redirigiendo...</h1>
-    <p>
-      Si no eres redirigido automáticamente,
-      <a
-        href="https://play.google.com/store/apps/details?id=com.tuempresa.tuapp"
-      >
-        haz clic aquí para ir a Play Store
-      </a>
-    </p>
+  <body onload="openApp()">
+    <div style="text-align: center; padding: 20px">
+      <h2>Abriendo Gallitos...</h2>
+      <p>
+        Si no tienes la aplicación instalada, serás redirigido a Play Store.
+      </p>
+      <p>
+        <a href="https://play.google.com/store/apps/details?id=gallitos">
+          Hacer clic aquí si no eres redirigido automáticamente
+        </a>
+      </p>
+    </div>
   </body>
 </html>
